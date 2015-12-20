@@ -1,0 +1,10 @@
+- model: guest_book.entry
+  pk: 1
+  fields:
+    username: John
+    text: lol
+- model: guest_book.entry
+  pk: 2
+  fields:
+    username: Paul
+    text: lol2
