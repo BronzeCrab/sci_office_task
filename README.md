@@ -2,6 +2,8 @@
 
 ## Как запустить (на примере голой ubuntu 14.04):
 
+-  `sudo apt-get update`
+
 ставим гит
 
 -  `sudo apt-get install git`
@@ -9,7 +11,7 @@
 пип
 
 -  `wget https://bootstrap.pypa.io/get-pip.py`
--  `python get-pip.py`
+-  `sudo python get-pip.py`
 
 клонируем этот репо
 
@@ -18,7 +20,7 @@
 зависимости
 
 -  `cd sci_office_task`
--  `pip install -r requirements.txt`
+-  `sudo pip install -r requirements.txt`
 
 bootstapform
 
@@ -28,7 +30,7 @@ bootstapform
 -  `sudo python setup.py install `
 
 запускаем
-
-- `python manage.py runserver`
+-  `cd ..`
+- `python manage.py runserver 0.0.0.0:8000`
 
 
