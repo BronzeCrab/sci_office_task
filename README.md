@@ -28,4 +28,7 @@ bootstapform
 -  `sudo python setup.py install `
 
 запускаем
+
 - `python manage.py runserver`
+
+
