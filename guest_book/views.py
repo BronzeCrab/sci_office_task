@@ -30,10 +30,7 @@ def index(request, sorting=None):
     radioform = RadioForm()
     if sorting is not None:
         entries = list(Entry.objects.order_by(sorting))
-        for el in entries:
-            print el.username
     else:
-        print ('without sort')
         entries = list(Entry.objects.all())
     last_4_entries = entries[-4:]
     entries_by_4 = dict()
