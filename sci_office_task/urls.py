@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from guest_book import views
 
 
 urlpatterns = [
-    url(r'^$', views.EntryList.as_view(), name='index')
+    url(r'^$', 'guest_book.views.index', name='index'),
+    url(r'^delentries', 'guest_book.views.dell_all_entries', name='delentry'),
 ]

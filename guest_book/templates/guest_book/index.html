@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guest book</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+ 	<h1 class="text-center">Гостевая книга</h1>
+	<div class="jumbotron">
+		<div class="entries">
+		    {% for entry in entries %}
+		    	<div class="well" id="well_{{forloop.counter0}}">
+		        	<p id="text_{{forloop.counter0}}">{{ entry.text }}</p>
+		        	<p id="username_{{forloop.counter0}}">Автор: {{ entry.username }}</p>
+		        	<p id="email_{{forloop.counter0}}">{{ entry.email }}</p>
+		        	<p id="homepage_{{forloop.counter0}}">{{ entry.homepage }}</p>
+		        </div>
+		    {% endfor %}
+		</div>
+	<button type="button" class="btn btn-default" id="left">
+  		<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+	</button>
+	<button type="submit" class="btn btn-default" id="right">
+  		<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+	</button>
+	</div>
+	{% load bootstrap %}
+	<form role="form" method="post">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Создать</button>
+    </div>
+	</form>
+	<a class="btn btn-default" href="/delentries" role="button">Удалить все</a>
+	{% for message in messages %}
+	{% ifequal message.tags 'error' %}
+	<div style="color:red">{{ message }}</div>
+	{% else %}
+	<div style="color:green">{{ message }}</div>
+	{% endifequal %}
+	{% endfor %}
+</div>
+<script type="text/javascript">
+	var cur_pos = parseInt("{{ current_pos }}");
+	var all_entries_by_4 = '{{ all_entries|safe }}';
+	all_entries_by_4 = JSON.parse(all_entries_by_4);
+	$( "#left" ).click(function() {
+	  if (cur_pos != 0) {
+	  	entries = all_entries_by_4.groups[cur_pos - 1];
+	  	console.log(entries);
+		jQuery.each(entries, function(i, val) {
+			$("#well_"+i).show();
+			$("#text_"+i).text(entries[i].text);
+			$("#username_"+i).text("Автор: "+entries[i].username);
+			$("#email_"+i).text(entries[i].email);
+			$("#homepage_"+i).text(entries[i].homepage);
+		});
+	  	cur_pos -= 1;
+	  }
+	});
+	$( "#right" ).click(function() {
+	  if (cur_pos != all_entries_by_4.groups.length - 1) {
+	  	entries = all_entries_by_4.groups[cur_pos + 1];
+	  	console.log(entries);
+	  	count = 0;
+		jQuery.each(entries, function(i, val) {
+			console.log(entries[i].text);
+			$("#text_"+i).text(entries[i].text);
+			$("#username_"+i).text("Автор: "+entries[i].username);
+			$("#email_"+i).text(entries[i].email);
+			$("#homepage_"+i).text(entries[i].homepage);
+			count += 1;
+		});
+		if (count != 4) {
+			for (i = count; i < 4; i++) { 
+    			$("#well_"+i).hide();
+			}
+		}
+		cur_pos += 1;
+	  }
+	});
+</script>
+</body>
+</html>
