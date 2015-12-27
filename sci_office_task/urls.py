@@ -18,5 +18,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^$', 'guest_book.views.index', name='index'),
+    url(r'^/(?P<sorting>\w+?)/$', 'guest_book.views.index', name='index'),
     url(r'^delentries', 'guest_book.views.dell_all_entries', name='delentry'),
+    url(r'^sort$', 'guest_book.views.sort', name='sort'),
 ]

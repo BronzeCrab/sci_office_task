@@ -11,3 +11,13 @@ class EntryForm(ModelForm):
     class Meta:
         model = Entry
         fields = ['username', 'text', 'email', 'homepage']
+
+
+CHOICES = [('username', 'username'),
+           ('text', 'text'),
+           ('email', 'email'),
+           ('homepage', 'homepage')]
+
+
+class RadioForm(forms.Form):
+    sort = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect, initial='username')
