@@ -20,7 +20,7 @@
 зависимости
 
 -  `cd sci_office_task`
--  `pip install -r requirements.txt`
+-  `sudo pip install -r requirements.txt`
 
 bootstapform
 
