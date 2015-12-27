@@ -2,6 +2,8 @@
 
 ## Как запустить (на примере голой ubuntu 14.04):
 
+-  `sudo apt-get update`
+
 ставим гит
 
 -  `sudo apt-get install git`
