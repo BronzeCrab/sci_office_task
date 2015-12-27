@@ -30,7 +30,7 @@ bootstapform
 -  `sudo python setup.py install `
 
 запускаем
-
+-  `cd ../sci_office_task`
 - `python manage.py runserver`
 
 
